@@ -2,6 +2,8 @@
 
 This is my final project submission for the Harvest Builders' Samurai Pizza Cat project. Core system functionality was provided by Harvest Builders developers, however testing and functionality around all Pizza related endpoints and components were written by myself.
 
+![Preview](Preview.gif)
+
 ## running the code:
 
 1. Run `yarn install:all` to install dependencies
