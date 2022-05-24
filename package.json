@@ -1,0 +1,67 @@
+{
+  "name": "harvest-talent-builder",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "typescript": "^4.4.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "concurrently": "^5.3.0",
+    "eslint": "^7.32.0",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "install:all": "yarn && cd packages/client && yarn && cd ../server && yarn",
+    "start": "concurrently \"yarn workspace client start\" \"yarn workspace server start\"",
+    "server:dev": "cd packages/server && yarn start",
+    "client:dev": "cd packages/client && yarn start",
+    "generate:types": "cd packages/server && yarn generate:types",
+    "seed:database": "cd packages/server && yarn seed:database",
+    "lint": "eslint \"**/*.{ts,js}\" --cache --fix",
+    "format": "prettier --write \"**/*.{ts,js,json,graphql,gql,yaml,yml,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,js,json,graphql,gql,yaml,yml,md}\"",
+    "prepare": "husky install",
+    "test": "cd packages/server && yarn test && cd ../client && yarn test --watchAll"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js}": [
+      "yarn generate:types",
+      "yarn format",
+      "yarn lint",
+      "git add ."
+    ],
+    "*.js": "eslint --cache --fix",
+    "*.{ts,js,json,graphql,gql,yaml,yml,md}": "prettier --write"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "description": "pizza ordering web app",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neofinancial/harvest-talent-builder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neofinancial/harvest-talent-builder/issues"
+  },
+  "homepage": "https://github.com/neofinancial/harvest-talent-builder#readme"
+}
